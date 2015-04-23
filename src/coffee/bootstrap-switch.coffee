@@ -285,10 +285,12 @@ do ($ = window.jQuery, window) ->
       @$on.on "click.bootstrapSwitch", (e) =>
         @state false
         @$element.trigger "focus.bootstrapSwitch"
+        false
 
       @$off.on "click.bootstrapSwitch", (e) =>
         @state true
         @$element.trigger "focus.bootstrapSwitch"
+        false
 
     _labelHandlers: ->
       @$label.on
@@ -311,6 +313,7 @@ do ($ = window.jQuery, window) ->
 
           @$container.css "margin-left", "#{percent - right}%"
           @$element.trigger "focus.bootstrapSwitch"
+          false
 
         "mousedown.bootstrapSwitch touchstart.bootstrapSwitch": (e) =>
           return if @isLabelDragging or @options.disabled or @options.readonly or @options.indeterminate
@@ -319,6 +322,7 @@ do ($ = window.jQuery, window) ->
 
           @isLabelDragging = true
           @$element.trigger "focus.bootstrapSwitch"
+          false
 
         "mouseup.bootstrapSwitch touchend.bootstrapSwitch": (e) =>
           return unless @isLabelDragging
@@ -333,9 +337,11 @@ do ($ = window.jQuery, window) ->
           else
             @state not @options.state
           @isLabelDragging = false
+          false
 
         "mouseleave.bootstrapSwitch": (e) =>
           @$label.trigger "mouseup.bootstrapSwitch"
+          false
 
     _formHandler: ->
       $form = @$element.closest "form"
